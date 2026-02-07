@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yagni 💍 Shubham</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{height:100vh;overflow:hidden;font-family:Poppins,sans-serif;color:white}
+video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3}
+.overlay{position:fixed;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.6),rgba(0,0,0,.2));z-index:-2}
+.particles span{position:absolute;width:6px;height:6px;background:gold;border-radius:50%;animation:float 6s linear infinite}
+@keyframes float{from{transform:translateY(110vh)}to{transform:translateY(-10vh);opacity:0}}
+.petals span{position:absolute;top:-40px;font-size:30px;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+.center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:95%}
+.name{font-family:Great Vibes,cursive;font-size:80px;background:linear-gradient(45deg,gold,#ff7eb3,white);-webkit-background-clip:text;color:transparent;text-shadow:0 0 60px gold}
+.photo{width:220px;height:220px;border-radius:50%;border:6px solid gold;margin:25px auto;object-fit:cover;box-shadow:0 0 80px gold}
+.count{font-size:26px;color:#ffd700;margin:15px 0}
+.message{font-size:23px;min-height:80px}
+.buttons{margin-top:30px;position:relative;height:100px}
+button{padding:16px 42px;font-size:22px;border:none;border-radius:45px;cursor:pointer}
+#yes{background:gold;box-shadow:0 0 30px gold}
+#no{background:#ff4d6d;position:absolute}
+.ring{display:none;font-size:100px;margin-top:20px;animation:zoom 1s infinite alternate}
+@keyframes zoom{from{transform:scale(1)}to{transform:scale(1.4)}}
+.fire{position:absolute;width:6px;height:6px;background:gold;border-radius:50%;animation:blast 1s linear forwards}
+@keyframes blast{to{transform:translate(var(--x),var(--y));opacity:0}}
+.final{display:none;font-family:Great Vibes,cursive;font-size:60px;margin-top:30px;color:gold;text-shadow:0 0 70px gold}
+</style>
+</head>
+
+<body>
+
+<video autoplay muted loop>
+  <source src="https://cdn.coverr.co/videos/coverr-romantic-sunset-9729/1080p.mp4">
+</video>
+<div class="overlay"></div>
+
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3">
+</audio>
+
+<div class="particles"></div>
+<div class="petals"></div>
+
+<div class="center">
+  <div class="name">Yagni 💖 Shubham</div>
+  <img src="https://uploads.onecompiler.io/44cvhfahm/44cvhdn3e/56194.jpg" class="photo">
+  <div class="count" id="count">❤️ Heartbeat: 5</div>
+  <div class="message" id="text"></div>
+
+  <div class="buttons">
+    <button id="yes">YES 💍</button>
+    <button id="no">NO 😜</button>
+  </div>
+
+  <div class="ring" id="ring">💍</div>
+  <div class="final" id="final">
+    Welcome Mrs. Shubham 👰💍<br>Forever Begins Now ❤️
+  </div>
+</div>
+
+<script>
+document.body.onclick=()=>document.getElementById('music').play();
+
+for(let i=0;i<80;i++){
+  let p=document.createElement('span');
+  p.style.left=Math.random()*100+'%';
+  p.style.animationDelay=Math.random()*6+'s';
+  document.querySelector('.particles').appendChild(p);
+}
+
+setInterval(()=>{
+  let p=document.createElement('span');
+  p.innerHTML='🌹';
+  p.style.left=Math.random()*100+'%';
+  p.style.animationDuration=Math.random()*6+6+'s';
+  document.querySelector('.petals').appendChild(p);
+  setTimeout(()=>p.remove(),12000);
+},400);
+
+let c=5;
+const count=document.getElementById('count');
+const timer=setInterval(()=>{
+  c--;
+  count.innerHTML="❤️ Heartbeat: "+c;
+  if(c===0){
+    clearInterval(timer);
+    count.innerHTML="💖 Destiny Moment 💖";
+  }
+},1000);
+
+const msg="Yagni… in every lifetime, every universe, my heart chooses you. Will you walk forever with me?";
+let i=0;
+(function type(){
+  if(i<msg.length){
+    text.innerHTML+=msg.charAt(i++);
+    setTimeout(type,65);
+  }
+})();
+
+const no=document.getElementById('no');
+no.onmouseover=()=>{
+  no.style.left=Math.random()*80+'%';
+  no.style.top=Math.random()*70+'px';
+};
+
+document.getElementById('yes').onclick=()=>{
+  document.getElementById('ring').style.display='block';
+  document.getElementById('final').style.display='block';
+  for(let i=0;i<250;i++){
+    let f=document.createElement('div');
+    f.className='fire';
+    f.style.left='50%';
+    f.style.top='50%';
+    f.style.setProperty('--x',(Math.random()*800-400)+'px');
+    f.style.setProperty('--y',(Math.random()*800-400)+'px');
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1000);
+  }
+};
+</script>
+
+</body>
+</html>
